@@ -1,5 +1,6 @@
 package com.example.root.mvvmexampleapp.activities;
 
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,18 +18,15 @@ public class ScoreCardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_score_card);
         ButterKnife.bind(this);
-        addSetScoreFragment(R.id.set_fragment, SetScoreFragment.newInstance());
-        addShowCountFragment(R.id.show_fragment, ShowCountFragment.newInstance());
+        initViews();
     }
 
-    public void addSetScoreFragment(int layoutId, SetScoreFragment fragment) {
-        FragmentManager fm = getSupportFragmentManager();
-        android.support.v4.app.FragmentTransaction ft = fm.beginTransaction();
-        ft.replace(layoutId, fragment);
-        ft.commitAllowingStateLoss();
+    private void initViews() {
+        addFragment(R.id.set_fragment, SetScoreFragment.newInstance());
+        addFragment(R.id.show_fragment, ShowCountFragment.newInstance());
     }
 
-    public void addShowCountFragment(int layoutId, ShowCountFragment fragment) {
+    public void addFragment(int layoutId, Fragment fragment) {
         FragmentManager fm = getSupportFragmentManager();
         android.support.v4.app.FragmentTransaction ft = fm.beginTransaction();
         ft.replace(layoutId, fragment);
