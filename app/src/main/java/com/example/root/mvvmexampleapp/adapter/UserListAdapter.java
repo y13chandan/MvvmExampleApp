@@ -1,6 +1,7 @@
 package com.example.root.mvvmexampleapp.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,12 +10,14 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.root.mvvmexampleapp.R;
+import com.example.root.mvvmexampleapp.activities.ScoreCardActivity;
 import com.example.root.mvvmexampleapp.model.User;
 
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.ViewHolder> {
     private Context mContext;
@@ -49,10 +52,22 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.ViewHo
         public ViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    navigateToScoreCardActivity();
+                }
+            });
         }
 
         public void onBind(User user) {
             tvUserName.setText(user.getName());
         }
+
+        private void navigateToScoreCardActivity() {
+            Intent intent = new Intent(mContext, ScoreCardActivity.class);
+            mContext.startActivity(intent);
+        }
+
     }
 }
