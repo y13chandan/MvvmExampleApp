@@ -1,5 +1,7 @@
 package com.example.root.mvvmexampleapp.viewmodel;
 
-public class UserViewModel {
+import android.arch.lifecycle.ViewModel;
+
+public class UserViewModel extends ViewModel {
 
 }
